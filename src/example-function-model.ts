@@ -1,4 +1,4 @@
-import * as T from '@told/platform/lib';
+import * as T from '@told/azure-functions-server/lib/src';
 
 export interface ExampleFunctionRequest extends T.Request<{ setup?: boolean }, {}> {
 }
