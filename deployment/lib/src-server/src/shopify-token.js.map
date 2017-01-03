@@ -1,0 +1,1 @@
+{"version":3,"file":"shopify-token.js","sourceRoot":"","sources":["../../../src-server/src/shopify-token.ts"],"names":[],"mappings":";AAAA,8BAAgC;AAGhC,0CAA0C;AAC1C,IAAM,YAAY,GAAG,OAAO,CAAC,eAAe,CAAC,CAAC;AAkBjC,QAAA,YAAY,GAAG,IAAI,YAAY,CAAC;IACzC,MAAM,EAAE,CAAC,CAAC,aAAa;IACvB,YAAY,EAAE,CAAC,CAAC,mBAAmB;IACnC,WAAW,EAAE,CAAC,CAAC,0BAA0B;CAC5C,CAA0B,CAAC"}

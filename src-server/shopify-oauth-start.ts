@@ -1,6 +1,6 @@
 import * as T from '@told/azure-functions-server/lib/src';
 
-import { shopifyToken } from './shopify-token';
+import { shopifyToken } from './shared/shopify-token';
 
 export function main(context: T.Context<any>, request: T.Request<{ hmac: string, shop: string, timestamp: string }, any>) {
 
