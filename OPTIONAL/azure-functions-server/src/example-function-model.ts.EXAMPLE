@@ -1,0 +1,10 @@
+import * as T from '@told/platform/lib';
+
+export interface ExampleFunctionRequest extends T.Request<{ setup?: boolean }, {}> {
+}
+
+export interface ExampleFunctionResponseData {
+    text: string;
+}
+
+export interface ExampleFunctionResponseBody extends T.ResponseBody<ExampleFunctionResponseData> { }
