@@ -9,9 +9,6 @@ export function main(context: T.Context<any>, request: T.Request<any, any>) {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'text/html',
         },
-        body: {
-            ok: true,
-            data: html as any,
-        }
+        body: html as any,
     });
 }
