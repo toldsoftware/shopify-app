@@ -1,6 +1,6 @@
 export interface HmacQuery {
     hmac: string;
-    signature: string;
+    signature?: string;
     state: string;
     code: string;
     shop: string;
@@ -10,6 +10,6 @@ export interface ShopifyTokenInterface {
     generateNonce(): string;
     generateAuthUrl(shop: string, scopes?: string[] | string, nonce?: string): string;
     verifyHmac(query: HmacQuery): boolean;
-    getAccessToken(hostname: string, code: string): string;
+    getAccessToken(hostname: string, code: string): Promise<string>;
 }
 export declare const shopifyToken: ShopifyTokenInterface;

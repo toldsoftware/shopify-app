@@ -2,7 +2,7 @@
     "typescript.tsdk": "./node_modules/typescript/lib",
     "files.exclude": {
         "**/*.js.map": true,
-        "node_modules": true,
+        // "node_modules": true,
         "typings": true,
         ".gitignore": true,
         ".travis.yml": true,

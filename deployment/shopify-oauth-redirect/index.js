@@ -1,0 +1,1 @@
+module.exports = require('./../lib/src-server/shopify-oauth-redirect').main;
