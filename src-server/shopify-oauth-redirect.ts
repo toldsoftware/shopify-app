@@ -2,11 +2,13 @@ import * as T from '@told/azure-functions-server/lib/src';
 
 import * as S from './shared/settings';
 import { shopifyToken } from './shared/shopify-token';
+import * as D from './data/shop';
 
-export function main(context: T.Context<any>, request: T.Request<{ code: string, hmac: string, timestamp: string, state: string, shop: string }, any>) {
+export async function main(context: T.Context<any>, request: T.Request<{ code: string, hmac: string, timestamp: string, state: string, shop: string }, any>) {
 
-    // TODO: verify nonce belongs to shop
-    let isValid = shopifyToken.verifyHmac({
+    let isNonceValid = D.verifyShopNonce(request.query.shop, request.query.state);
+
+    let isHmacValid = shopifyToken.verifyHmac({
         code: request.query.code,
         hmac: request.query.hmac,
         timestamp: request.query.timestamp,
@@ -15,27 +17,25 @@ export function main(context: T.Context<any>, request: T.Request<{ code: string,
     });
 
     // Exchange Token
-    let accessToken = shopifyToken.getAccessToken(request.query.shop, request.query.code);
+    let accessToken = await shopifyToken.getAccessToken(request.query.shop, request.query.code);
 
-    accessToken.then(x => {
-        // TODO: Store token
-        console.log('shopify-oauth-redirect SUCCESS');
+    console.log('shopify-oauth-redirect SUCCESS');
 
-        let redirectUrl = S.url_shopify_welcome;
+    await D.storeShopAccessToken(request.query.shop, accessToken);
+    await D.removeShopNonce(request.query.shop, request.query.state);
+    let loginToken = await D.getShopLoginToken(request.query.shop);
 
-        context.done(null, {
-            status: 303,
-            headers: {
-                'Location': redirectUrl,
-                'Content-Type': 'text/html',
-            },
-            body: `<html><head></head><body>Oauth Redirect</body></html>` as any,
-        });
+    let redirectUrl = S.url_shopify_welcome + '?loginToken=' + loginToken;
 
-    }).catch(err => {
-        console.log('shopify-oauth-redirect FAILED', err);
-        context.done(err, null);
+    context.done(null, {
+        status: 303,
+        headers: {
+            'Location': redirectUrl,
+            'Content-Type': 'text/html',
+        },
+        body: `<html><head></head><body>Oauth Redirect</body></html>` as any,
     });
+
 
 
 }

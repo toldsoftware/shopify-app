@@ -3,4 +3,4 @@ export declare function main(context: T.Context<any>, request: T.Request<{
     hmac: string;
     shop: string;
     timestamp: string;
-}, any>): void;
+}, any>): Promise<void>;

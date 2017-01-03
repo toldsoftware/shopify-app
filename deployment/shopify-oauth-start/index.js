@@ -1,1 +1,1 @@
-module.exports = require('./../lib/src-server/shopify-oauth-start').main;
+module.exports = require('./../lib/src-server/azure-server').serve(require('./../lib/src-server/shopify-oauth-start').main);

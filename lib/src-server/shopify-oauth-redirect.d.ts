@@ -5,4 +5,4 @@ export declare function main(context: T.Context<any>, request: T.Request<{
     timestamp: string;
     state: string;
     shop: string;
-}, any>): void;
+}, any>): Promise<void>;
