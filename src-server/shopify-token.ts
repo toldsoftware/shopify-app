@@ -1,5 +1,5 @@
+import * as S from './settings';
 declare var require: any;
-declare var process: any;
 
 // https://github.com/lpinca/shopify-token
 const ShopifyToken = require('shopify-token');
@@ -21,7 +21,7 @@ export interface ShopifyTokenInterface {
 }
 
 export const shopifyToken = new ShopifyToken({
-    apiKey: process.env.shopifyApiKey,
-    sharedSecret: process.env.shopifySharedSecret,
-    redirectUri: process.env.domain + '/api/shopify-oauth-redirect',
+    apiKey: S.shopifyApiKey,
+    sharedSecret: S.shopifySharedSecret,
+    redirectUri: S.url_shopify_oauth_redirect,
 }) as ShopifyTokenInterface;

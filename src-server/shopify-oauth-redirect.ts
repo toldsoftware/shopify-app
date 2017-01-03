@@ -1,5 +1,6 @@
 import * as T from '@told/azure-functions-server/lib/src';
 
+import * as S from './settings';
 import { shopifyToken } from './shopify-token';
 
 export function main(context: T.Context<any>, request: T.Request<{ code: string, hmac: string, timestamp: string, state: string, shop: string }, any>) {
@@ -19,18 +20,22 @@ export function main(context: T.Context<any>, request: T.Request<{ code: string,
     accessToken.then(x => {
         // TODO: Store token
         console.log('shopify-oauth-redirect SUCCESS');
+
+        let redirectUrl = S.url_shopify_welcome;
+
+        context.done(null, {
+            status: 303,
+            headers: {
+                'Location': redirectUrl,
+                'Content-Type': 'text/html',
+            },
+            body: `<html><head></head><body>Oauth Redirect</body></html>` as any,
+        });
+
     }).catch(err => {
         console.log('shopify-oauth-redirect FAILED', err);
-        throw err;
+        context.done(err, null);
     });
 
-    let redirectUrl = shopifyToken.generateAuthUrl(request.query.shop);
 
-    context.done(null, {
-        headers: {
-            'Location': redirectUrl,
-            'Content-Type': 'text/html',
-        },
-        body: `<html><head></head><body>Oauth Redirect</body></html>` as any,
-    });
 }

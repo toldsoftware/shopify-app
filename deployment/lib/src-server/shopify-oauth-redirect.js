@@ -1,4 +1,5 @@
 "use strict";
+var S = require("./settings");
 var shopify_token_1 = require("./shopify-token");
 function main(context, request) {
     // TODO: verify nonce belongs to shop
@@ -14,17 +15,18 @@ function main(context, request) {
     accessToken.then(function (x) {
         // TODO: Store token
         console.log('shopify-oauth-redirect SUCCESS');
+        var redirectUrl = S.url_shopify_welcome;
+        context.done(null, {
+            status: 303,
+            headers: {
+                'Location': redirectUrl,
+                'Content-Type': 'text/html',
+            },
+            body: "<html><head></head><body>Oauth Redirect</body></html>",
+        });
     }).catch(function (err) {
         console.log('shopify-oauth-redirect FAILED', err);
-        throw err;
-    });
-    var redirectUrl = shopify_token_1.shopifyToken.generateAuthUrl(request.query.shop);
-    context.done(null, {
-        headers: {
-            'Location': redirectUrl,
-            'Content-Type': 'text/html',
-        },
-        body: "<html><head></head><body>Oauth Redirect</body></html>",
+        context.done(err, null);
     });
 }
 exports.main = main;

@@ -1,9 +1,10 @@
 "use strict";
+var S = require("./settings");
 // https://github.com/lpinca/shopify-token
 var ShopifyToken = require('shopify-token');
 exports.shopifyToken = new ShopifyToken({
-    apiKey: process.env.shopifyApiKey,
-    sharedSecret: process.env.shopifySharedSecret,
-    redirectUri: process.env.domain + '/api/shopify-oauth-redirect',
+    apiKey: S.shopifyApiKey,
+    sharedSecret: S.shopifySharedSecret,
+    redirectUri: S.url_shopify_oauth_redirect,
 });
 //# sourceMappingURL=shopify-token.js.map

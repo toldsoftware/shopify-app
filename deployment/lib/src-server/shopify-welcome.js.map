@@ -1,0 +1,1 @@
+{"version":3,"file":"shopify-welcome.js","sourceRoot":"","sources":["../../src-server/shopify-welcome.ts"],"names":[],"mappings":";AAEA,cAAqB,OAAuB,EAAE,OAA4B;IAEtE,OAAO,CAAC,IAAI,CAAC,IAAI,EAAE;QACf,OAAO,EAAE;YACL,cAAc,EAAE,WAAW;SAC9B;QACD,IAAI,EAAE,iDAAwD;KACjE,CAAC,CAAC;AACP,CAAC;AARD,oBAQC"}
