@@ -6,8 +6,8 @@ export async function storeShopNonce(shop: string, nonce: string) {
 }
 
 export async function verifyShopNonce(shop: string, nonce: string) {
-    return new Promise((resolve, reject) => {
-
+    return new Promise<boolean>((resolve, reject) => {
+        resolve(true);
     });
 }
 

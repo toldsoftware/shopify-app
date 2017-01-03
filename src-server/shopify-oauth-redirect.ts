@@ -6,7 +6,9 @@ import * as D from './data/shop';
 
 export async function main(context: T.Context<any>, request: T.Request<{ code: string, hmac: string, timestamp: string, state: string, shop: string }, any>) {
 
-    let isNonceValid = D.verifyShopNonce(request.query.shop, request.query.state);
+    let isNonceValid = await D.verifyShopNonce(request.query.shop, request.query.state);
+
+    if (!isNonceValid) { context.done('Shop Nonce is not valid', null); };
 
     let isHmacValid = shopifyToken.verifyHmac({
         code: request.query.code,
@@ -15,6 +17,8 @@ export async function main(context: T.Context<any>, request: T.Request<{ code: s
         state: request.query.state,
         shop: request.query.shop
     });
+
+    if (!isHmacValid) { context.done('Shop Hmac is not valid', null); };
 
     // Exchange Token
     let accessToken = await shopifyToken.getAccessToken(request.query.shop, request.query.code);

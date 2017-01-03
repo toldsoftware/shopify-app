@@ -1,1 +1,1 @@
-module.exports = require('./../lib/src-server/manual-server').serve(require('./../lib/src-server/shopify-oauth-redirect').main);
+module.exports = require('@told/azure-functions-server/lib/src-server/manual-server').serve(require('./../lib/src-server/shopify-oauth-redirect').main);

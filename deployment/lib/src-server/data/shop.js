@@ -13,6 +13,7 @@ function verifyShopNonce(shop, nonce) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         return tslib_1.__generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) {
+                    resolve(true);
                 })];
         });
     });
