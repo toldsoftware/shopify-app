@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "tslib": "^1.4.0",
-    "@told/azure-functions-server": "^1.0.7",    
+    "@told/azure-functions-server": "^1.1.2",    
     "@told/platform": "^1.0.2",
     "shopify-api-node": "^2.3.0",
     "shopify-token": "^3.0.0"
