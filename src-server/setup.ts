@@ -1,14 +1,16 @@
 import * as T from '@told/azure-functions-server/lib/src';
 
-export function main(context: T.Context<any>, request: T.Request<any, any>) {
+import { shopifyToken } from './shopify-token';
 
-    let html = '<html><head></head><body>Hello!!!</body></html>';
+export function main(context: T.Context<any>, request: T.Request<{ hmac: string, shop: string, timestamp: number }, any>) {
 
+    let redirectUrl = shopifyToken.generateAuthUrl(request.query.shop);
     context.done(null, {
+        status: 303,
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Location': redirectUrl,
             'Content-Type': 'text/html',
         },
-        body: html as any,
+        body: `<html><head></head><body>Oauth Redirect</body></html>` as any,
     });
 }
