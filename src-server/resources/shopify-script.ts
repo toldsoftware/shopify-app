@@ -23,7 +23,6 @@ function load() {
     products.forEach(x => {
         x.element.innerHTML = `
         <img src='${x.imageUrl}' class='product-card__image'>
-        <button onclick='javascript:glip_add_image()'>Add Your Image for a Preview</button>
         `;
 
         if (x.previewData != null) {
@@ -36,6 +35,7 @@ function load() {
         button.click = () => {
             console.log('clicked glip_add_image', x.imageUrl);
         };
+        button.innerHTML = `Add Your Image for a Preview`;
 
         let container = x.element.parentElement.parentElement;
         container.insertBefore(button, x.element.parentElement);

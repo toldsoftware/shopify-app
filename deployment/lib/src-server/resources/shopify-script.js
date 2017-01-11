@@ -16,7 +16,7 @@ function load() {
         previewData: x.getAttribute(attribute_previewData),
     }); });
     products.forEach(function (x) {
-        x.element.innerHTML = "\n        <img src='" + x.imageUrl + "' class='product-card__image'>\n        <button onclick='javascript:glip_add_image()'>Add Your Image for a Preview</button>\n        ";
+        x.element.innerHTML = "\n        <img src='" + x.imageUrl + "' class='product-card__image'>\n        ";
         if (x.previewData != null) {
             try {
                 var d = JSON.parse(x.previewData);
@@ -27,6 +27,7 @@ function load() {
         button.click = function () {
             console.log('clicked glip_add_image', x.imageUrl);
         };
+        button.innerHTML = "Add Your Image for a Preview";
         var container = x.element.parentElement.parentElement;
         container.insertBefore(button, x.element.parentElement);
     });
