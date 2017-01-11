@@ -2,6 +2,7 @@
 
 const className_productCardImageWrapper = 'product-card__image-wrapper';
 const attribute_previewImageUrl = 'data-preview-image';
+const attribute_productId = 'data-product-id';
 const attribute_previewData = 'data-preview-data';
 
 
@@ -15,6 +16,7 @@ function load() {
     let products = productCards.map(x => ({
         element: x,
         imageUrl: x.getAttribute(attribute_previewImageUrl) as string,
+        productId: x.getAttribute(attribute_productId) as string,
         previewData: x.getAttribute(attribute_previewData) as string,
     }));
 
