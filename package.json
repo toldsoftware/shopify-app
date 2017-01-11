@@ -4,7 +4,7 @@
   "description": "Shopfy App",
   "main": "index.ts",
   "scripts": {
-    "asf": ".\\node_modules\\.bin\\afs -w",
+    "afs": ".\\node_modules\\.bin\\afs -w",
     "test": "karma start karma.conf.js"
   },
   "repository": {
